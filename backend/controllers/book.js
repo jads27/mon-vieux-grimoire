@@ -59,7 +59,7 @@ exports.deleteBook = (req, res, next) => {
                 res.status(403).json({ message: "Non autorisé" });
             } else {
                 const filename = book.imageUrl.split("/images/")[1];
-                fs.unlink(`images/"${filename}`, () => {
+                fs.unlink(`images/${filename}`, () => {
                     Book.deleteOne({ _id: req.params.id })
                         .then(() => res.status(200).json({ message: "Objet supprimé !" }))
                         .catch((error) => res.status(403).json({ error }));
